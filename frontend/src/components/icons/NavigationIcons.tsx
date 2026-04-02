@@ -129,6 +129,43 @@ export function DropboxIcon({ className }: IconProps) {
   )
 }
 
+export function OneDriveIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M9.2 18h8.1a3.2 3.2 0 0 0 .2-6.4 4.8 4.8 0 0 0-8.9-1.5A3.7 3.7 0 0 0 9.2 18Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function ICloudIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M7.8 18h8.7a3.6 3.6 0 0 0 .26-7.2 5 5 0 0 0-9.55-1.4A3.5 3.5 0 0 0 7.8 18Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 14.2c.9-.9 1.7-1.1 2-1.1.6 0 1 .2 1.6.6.4.2.6.2.8.2.2 0 .4 0 .8-.2.5-.3.9-.5 1.4-.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 export function SunIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
