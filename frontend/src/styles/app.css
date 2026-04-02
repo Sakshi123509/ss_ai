@@ -46,16 +46,11 @@
   border-radius: 999px;
   color: var(--surface);
   background: var(--primary);
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
 }
 
-.primary-button:hover,
-.sidebar-toggle:hover,
-.nav-item:hover,
-.theme-toggle:hover {
-  transform: translateY(-1px);
+.primary-button:hover {
+  background: var(--sidebar-selected-text);
+  color: var(--sidebar-selected-bg);
 }
 
 .dashboard-shell {
@@ -74,9 +69,6 @@
   background: var(--primary);
   color: var(--surface);
   border-right: 1px solid var(--border);
-  transition:
-    width 0.25s ease,
-    padding 0.25s ease;
 }
 
 .sidebar.open {
@@ -103,6 +95,11 @@
   background: var(--sidebar-control-bg);
 }
 
+.sidebar-toggle:hover {
+  background: var(--sidebar-selected-bg);
+  color: var(--sidebar-selected-text);
+}
+
 .toggle-icon {
   width: 22px;
   height: 22px;
@@ -117,6 +114,10 @@
   border-radius: 16px;
   color: var(--text);
   background: var(--surface-soft);
+}
+
+.theme-toggle:hover {
+  background: var(--primary-soft);
 }
 
 .theme-icon {
@@ -151,14 +152,15 @@
   text-align: left;
   color: inherit;
   background: transparent;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
 }
 
 .sidebar.closed .nav-item {
   justify-content: center;
   padding-inline: 0;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-item.active {
@@ -228,6 +230,10 @@
   border: 1px solid var(--border);
 }
 
+.account-button:hover {
+  background: var(--primary-soft);
+}
+
 .account-icon {
   width: 18px;
   height: 18px;
@@ -281,13 +287,11 @@
   background: var(--surface-soft);
   color: var(--text);
   box-shadow: var(--shadow);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
 }
 
 .connect-card:hover {
-  transform: translateY(-1px);
+  background: var(--primary-soft);
+  border-color: var(--primary);
 }
 
 .connect-icon {
