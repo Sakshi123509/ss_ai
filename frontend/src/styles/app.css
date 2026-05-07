@@ -20,7 +20,7 @@
 
 .splash-card {
   width: min(560px, 100%);
-  min-height: 380px;
+  min-height: 430px;
   display: grid;
   place-items: center;
   text-align: center;
@@ -29,6 +29,7 @@
 }
 
 .primary-button,
+.secondary-button,
 .sidebar-toggle,
 .nav-item,
 .theme-toggle,
@@ -36,8 +37,8 @@
 .account-menu-item,
 .connect-card {
   font: inherit;
-  border: 0;
   cursor: pointer;
+  border: 0;
 }
 
 .primary-button {
@@ -51,6 +52,38 @@
 .primary-button:hover {
   background: var(--sidebar-selected-text);
   color: var(--sidebar-selected-bg);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.connect-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.secondary-button {
+  min-width: 180px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.secondary-button:hover {
+  background: var(--surface-soft);
+}
+
+.compact-button {
+  min-width: 0;
+  align-self: flex-start;
+}
+
+.splash-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .dashboard-shell {
@@ -257,6 +290,7 @@
   color: var(--text);
   background: var(--surface-soft);
   border: 1px solid var(--border);
+  max-width: 240px;
 }
 
 .account-button:hover {
@@ -266,6 +300,20 @@
 .account-icon {
   width: 18px;
   height: 18px;
+}
+
+.account-button span,
+.account-menu-profile strong,
+.account-menu-profile span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
 }
 
 .account-menu {
@@ -297,10 +345,61 @@
   background: var(--surface-soft);
 }
 
+.account-menu-profile {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.account-menu-profile strong {
+  color: var(--text);
+  font-size: 0.94rem;
+}
+
+.account-menu-profile span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.cloud-workspace {
+  display: grid;
+  gap: 24px;
+  max-width: 860px;
+}
+
+.integration-panel,
+.local-detection-panel {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.integration-copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.integration-copy .connect-icon {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin-top: 2px;
+}
+
 .connect-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 280px));
   gap: 16px;
+}
+
+.secondary-connect-grid {
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
 }
 
 .connect-card {
@@ -318,7 +417,7 @@
   box-shadow: var(--shadow);
 }
 
-.connect-card:hover {
+.connect-card:hover:not(:disabled) {
   background: var(--primary-soft);
   border-color: var(--primary);
 }
@@ -334,11 +433,63 @@
   font-weight: 600;
 }
 
-.coming-soon-panel {
-  min-height: 220px;
+.connect-note {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.detected-list {
+  display: grid;
+  gap: 8px;
+}
+
+.detected-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.detected-item div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.detected-item strong,
+.detected-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detected-item span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.detected-item a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detected-item.subtle {
   justify-content: flex-start;
+  background: transparent;
+}
+
+.status-message {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.status-message.error {
+  color: #b3261e;
 }
 
 .eyebrow {
@@ -351,6 +502,11 @@
 
 .empty-state {
   max-width: 34ch;
+  color: var(--muted);
+}
+
+.muted-copy {
+  max-width: 62ch;
   color: var(--muted);
 }
 
@@ -386,6 +542,10 @@
   }
 
   .connect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .secondary-connect-grid {
     grid-template-columns: 1fr;
   }
 

@@ -1,15 +1,24 @@
 import type { ThemeMode } from '../app/App'
+import type { UserSession } from '../services/auth'
 import { MoonIcon, SunIcon } from '../components/icons/NavigationIcons'
 
 type SplashPageProps = {
+  authError: string | null
+  isSigningIn: boolean
   onGetStarted: () => void
+  onSignIn: () => Promise<void>
   onToggleTheme: () => void
+  session: UserSession | null
   theme: ThemeMode
 }
 
 export function SplashPage({
+  authError,
+  isSigningIn,
   onGetStarted,
+  onSignIn,
   onToggleTheme,
+  session,
   theme,
 }: SplashPageProps) {
   return (
@@ -29,10 +38,25 @@ export function SplashPage({
 
       <section className="splash-card">
         <p className="eyebrow">ss.ai workspace</p>
-        <h1>Start with a clean workspace.</h1>
-        <button type="button" className="primary-button" onClick={onGetStarted}>
-          Get Started
-        </button>
+        <h1>Start with a clean screenshot workspace.</h1>
+        <div className="splash-actions">
+          <button
+            type="button"
+            className="primary-button"
+            disabled={isSigningIn}
+            onClick={session ? onGetStarted : onSignIn}
+          >
+            {session
+              ? 'Open dashboard'
+              : isSigningIn
+                ? 'Connecting...'
+                : 'Sign in with Google'}
+          </button>
+          <button type="button" className="secondary-button" onClick={onGetStarted}>
+            Continue without sign-in
+          </button>
+        </div>
+        {authError ? <p className="status-message error">{authError}</p> : null}
       </section>
     </main>
   )
