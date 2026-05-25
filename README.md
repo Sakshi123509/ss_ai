@@ -1,6 +1,5 @@
 # SS AI
-A personal AI for screenshot analysis and metadata extraction.
-
+AI-powered screenshot analysis and knowledge extraction platform that processes screenshots from multiple sources using OCR, Vision AI, metadata enrichment, tagging, and parallel worker pipelines.
 ## Main app
 The main app now lives at the repository root with Next.js routes under `src/app` and feature/server code under `src/features` and `src/server`.
 
