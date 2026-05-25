@@ -17,7 +17,7 @@ Project state as of 2026-05-24: the root app is a Next.js 16.2.2 app with a clie
 ## Priority 0 - Correctness And Build Hygiene
 
 - [ ] Replace the account avatar `<img>` in `DashboardLayout.tsx` with Next `Image` or explicitly justify/disable the lint rule.
-- [ ] Add a root `.env.example` documenting `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, `OPENAI_API_KEY`, `REDIS_URL`, `SCREENSHOT_STORAGE_DIR`, `PROCESSED_STORAGE_DIR`, `TELEGRAM_BOT_TOKEN`, and `PORT`.
+- [x] Add a root `.env.example` documenting `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, `OPENAI_API_KEY`, `REDIS_URL`, `SCREENSHOT_STORAGE_DIR`, `PROCESSED_STORAGE_DIR`, `TELEGRAM_BOT_TOKEN`, and `PORT`.
 - [ ] Decide whether `src/server/server/api.ts` is still needed now that Next API routes exist; remove it if it is legacy.
 - [ ] Fix README legacy path references so they match the current repo. It mentions `frontend/`, `backend/`, and `mobile/`, but the visible placeholder is `mobile [soon]/`.
 - [ ] Add at least one smoke test path or documented manual test for the dashboard and API routes.
@@ -59,9 +59,14 @@ Project state as of 2026-05-24: the root app is a Next.js 16.2.2 app with a clie
 ## Priority 5 - Integrations
 
 - [ ] Google Drive: move from folder detection to file listing, change detection, and ingestion.
+- [ ] Google Drive: document Google Cloud setup steps for OAuth client ID, authorized origin, authorized redirect URI, and Drive API enablement.
 - [ ] Local device: persist a directory handle where possible and add manual refresh/import.
+- [ ] Local device: add background watcher support for a configured screenshot source directory, using `LOCAL_SCREENSHOT_SOURCE_DIR`.
+- [ ] Local device: make the local watcher flow match cloud ingestion by detecting new screenshots, creating jobs, copying files into `SCREENSHOT_STORAGE_DIR`, and enqueueing processing.
+- [ ] Local device: handle startup permission checks, missing directory errors, and recovery when background access is revoked.
 - [ ] Telegram: implement bot webhook or polling, media download, description/comment capture, and job enqueueing.
-- [ ] Cloud providers: define whether Dropbox, OneDrive, and iCloud are planned for MVP or should stay disabled.
+- [ ] Cloud providers: keep Dropbox, OneDrive, iCloud, and S3 disabled until Google Drive and local background ingestion are working.
+- [ ] Cloud providers: later define required dashboard/API keys, OAuth scopes, source refs, and ingestion behavior for Dropbox, OneDrive, iCloud, and S3.
 - [ ] Add provider-specific source refs that can round-trip back to the original file/message/folder.
 
 ## Priority 6 - UI Product Work
@@ -94,4 +99,3 @@ Project state as of 2026-05-24: the root app is a Next.js 16.2.2 app with a clie
 - [x] `npm run lint` passes with 1 warning: `@next/next/no-img-element` in `src/features/ss-app/components/layout/DashboardLayout.tsx`.
 - [x] `npm run backend:check` passes.
 - [x] `npm run build` passes.
-
