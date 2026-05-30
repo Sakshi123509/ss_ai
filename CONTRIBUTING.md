@@ -37,13 +37,11 @@ Run these from the repository root:
 ```bash
 npm run dev
 npm run lint
-npm run backend:check
 npm run build
 ```
 
 - `npm run dev` starts the local Next.js development server.
 - `npm run lint` runs ESLint.
-- `npm run backend:check` runs TypeScript type checking without emitting files.
 - `npm run build` verifies the production build.
 
 ## Project Structure
@@ -100,10 +98,9 @@ For API, worker, ingestion, queue, or storage changes, include a short note in t
 
 Before requesting review, confirm that:
 
-- The PR targets `develop`.
+- The PR targets `develop` branch.
 - The description explains what changed and why.
 - Relevant checks have been run and their results are listed.
 - New setup steps, environment variables, or scripts are documented.
 - Screenshots or screen recordings are included for meaningful UI changes.
 - The PR does not include secrets, local storage data, or unrelated changes.
-
