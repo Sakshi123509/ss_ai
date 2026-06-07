@@ -6,9 +6,21 @@ import path from "path";
 import { env } from "@/server/config/env";
 import type { ScreenshotInput } from "@/server/types/screenshot";
 
+const ACCEPTED_MIME_TYPES = [
+  "image/png",
+  "image/jpeg",
+  "image/webp",
+  "image/heic",
+  "image/gif",
+  "image/bmp",
+];
+
+const ACCEPTED_EXTENSIONS = /\.(png|jpe?g|webp|heic|gif|bmp)$/i;
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+
 export async function GET() {
   const { repository } = await getServerRuntime();
-  const records = await repository.list();
+  const records = await repository.findAll();
   return NextResponse.json(records);
 }
 
@@ -25,6 +37,32 @@ export async function POST(req: NextRequest) {
     if(!file || !sourceType ) {
       return NextResponse.json(
         { error: "file and sourceType are required"},
+        { status: 400 }
+      );
+    }
+
+    if (!["telegram", "local", "cloud"].includes(sourceType)) {
+      return NextResponse.json(
+        { error: "sourceType must be telegram, local, or cloud"},
+        { status: 400 }
+      );
+    }
+
+    if(
+      !ACCEPTED_MIME_TYPES.includes(file.type) ||
+      !ACCEPTED_EXTENSIONS.test(file.name)
+    ) {
+      return NextResponse.json(
+        { error:
+          "Only image files are accepted (png, jpg, webp, heic, gif, bmp)",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      return NextResponse.json(
+        { error: "File size must not exceed 10MB" },
         { status: 400 }
       );
     }
