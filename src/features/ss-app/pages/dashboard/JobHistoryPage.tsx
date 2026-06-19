@@ -77,10 +77,10 @@ export function JobHistoryPage() {
               <span>{job.jobId.slice(0, 10)}...</span>
 
               <span>
-                {job.status === 'processed' && '🟢 processed'}
-                {job.status === 'processing' && '🟡 processing'}
-                {job.status === 'queued' && '⚪ queued'}
-                {job.status === 'failed' && '🔴 failed'}
+                {job.status === 'processed' && 'processed'}
+                {job.status === 'processing' && 'processing'}
+                {job.status === 'queued' && 'queued'}
+                {job.status === 'failed' && 'failed'}
               </span>
 
               <span>{job.stage ?? '-'}</span>
