@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 type Job = {
-  jobId: string
+  id: string
   status: string
   stage: string | null
   createdAt: string
@@ -30,9 +30,7 @@ export function JobHistoryPage() {
     load()
     interval = setInterval(load, 3000)
 
-    return () => {
-      clearInterval(interval)
-    }
+    return () => clearInterval(interval)
   }, [])
 
   if (loading) {
@@ -64,7 +62,7 @@ export function JobHistoryPage() {
           {/* ROWS */}
           {jobs.map((job) => (
             <div
-              key={job.jobId}
+              key={job.id}
               onClick={() => setSelectedJob(job)}
               style={{
                 display: 'grid',
@@ -74,7 +72,7 @@ export function JobHistoryPage() {
                 cursor: 'pointer',
               }}
             >
-              <span>{job.jobId.slice(0, 10)}...</span>
+              <span>{job.id.slice(0, 10)}...</span>
 
               <span>
                 {job.status === 'processed' && 'processed'}
@@ -104,9 +102,15 @@ export function JobHistoryPage() {
         >
           <h4>Job Details</h4>
 
-          <p><strong>Job ID:</strong> {selectedJob.jobId}</p>
-          <p><strong>Status:</strong> {selectedJob.status}</p>
-          <p><strong>Stage:</strong> {selectedJob.stage ?? '-'}</p>
+          <p>
+            <strong>Job ID:</strong> {selectedJob.id}
+          </p>
+          <p>
+            <strong>Status:</strong> {selectedJob.status}
+          </p>
+          <p>
+            <strong>Stage:</strong> {selectedJob.stage ?? '-'}
+          </p>
           <p>
             <strong>Created:</strong>{' '}
             {new Date(selectedJob.createdAt).toLocaleString()}

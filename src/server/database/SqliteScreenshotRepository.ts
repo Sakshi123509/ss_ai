@@ -88,11 +88,7 @@ async findBySourceRef(
       id:          record.screenshot.id,
       sourceType:  record.screenshot.sourceType,
       sourceRef:   record.screenshot.sourceRef,
-<<<<<<< HEAD
-      fileHash:    record.screenshot.fileHash,
-=======
       fileHash: record.screenshot.fileHash,
->>>>>>> d3b2f58 (fix: address PR review comments (UI cleanup + fileHash fix))
       processedAt: record.processedAt,
       recordJson:  JSON.stringify(record),
     });
