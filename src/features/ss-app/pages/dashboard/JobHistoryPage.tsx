@@ -15,6 +15,7 @@ export function JobHistoryPage() {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
 
   useEffect(() => {
+    let interval: ReturnType<typeof setInterval>
 
     async function load() {
       try {
@@ -27,7 +28,7 @@ export function JobHistoryPage() {
     }
 
     load()
-    const interval = setInterval(load, 3000)
+    interval = setInterval(load, 3000)
 
     return () => clearInterval(interval)
   }, [])
